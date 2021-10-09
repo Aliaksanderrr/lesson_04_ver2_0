@@ -1,6 +1,7 @@
 package java2.Task3EmployeeHierarchy;
 
-import java.util.ArrayList;
+import java2.Task3EmployeeHierarchy.util.Companies;
+
 import java.util.List;
 
 public class Task3EmployeeHierarchy {
@@ -10,27 +11,55 @@ public class Task3EmployeeHierarchy {
 
 		//TASK3_1
 		System.out.println("Task3_1");
-		System.out.println(treeWidth(company));
+		Companies.Expression selectAll = ((employee, selectedEmployeeList) -> true);
+
+		printEmployees(Companies.findEmployee(company, selectAll));
 
 		//TASK3_2
+		System.out.println("Task3_2");
+		Companies.Expression minAge = ((employee, selectedEmployeeList) -> {
+			if (selectedEmployeeList.isEmpty()) {
+				return true;
+			} else if (employee.getPerson().getAge() < selectedEmployeeList.get(0).getPerson().getAge()) {
+				selectedEmployeeList.clear();
+				return true;
+			} else return employee.getPerson().getAge() == selectedEmployeeList.get(0).getPerson().getAge();
+		});
+
+		printEmployees(Companies.findEmployee(company, minAge));
+
+		//TASK3_3
+		System.out.println("Task3_3");
+		Companies.Expression maxAge = ((employee, selectedEmployeeList) -> {
+			if (selectedEmployeeList.isEmpty()) {
+				return true;
+			} else if (employee.getPerson().getAge() > selectedEmployeeList.get(0).getPerson().getAge()) {
+				selectedEmployeeList.clear();
+				return true;
+			} else return employee.getPerson().getAge() == selectedEmployeeList.get(0).getPerson().getAge();
+		});
+		printEmployees(Companies.findEmployee(company, maxAge));
+
+		//TASK3_4
+		System.out.println("Task3_4");
 
 
 	}
 
 	private static Company createCompany() {
-		Employee ivanov = new Employee(new Person("Василий", "Иванов"), null);
-		Employee malisheva = new Employee(new Person("Ольга", "Малышева"), null);
-		Employee zaisev = new Employee(new Person("Ольга", "Малышева"), null);
-		Employee soteinik = new Employee(new Person("Николай", "Сотейник"), null);
-		Employee velesov = new Employee(new Person("Иван", "Велесов"), null);
-		Employee fontik = new Employee(new Person("Евгений", "Фотник"), null);
-		Employee mozaikina = new Employee(new Person("Екатерина", "Мозайкина"), null);
-		Employee petrov = new Employee(new Person("Иван", "Петров"), null);
-		Employee dolgorukiy = new Employee(new Person("Александр", "Долгорукий"), null);
-		Employee vodianov = new Employee(new Person("Дмитрий", "Водянов"), null);
-		Employee gubin = new Employee(new Person("Андрей", "Губин"), null);
-		Employee zverev = new Employee(new Person("Сергей", "Зверев"), null);
-		Employee utkina = new Employee(new Person("Наталья", "Уткина"), null);
+		Employee ivanov = new Employee(new Person("Василий", "Иванов", 45), null, 100500);
+		Employee malisheva = new Employee(new Person("Ольга", "Малышева", 62), null, 1050);
+		Employee zaisev = new Employee(new Person("Петр", "Зайцев", 62), null, 2500);
+		Employee soteinik = new Employee(new Person("Николай", "Сотейник", 34), null, 999);
+		Employee velesov = new Employee(new Person("Иван", "Велесов", 62), null, 888);
+		Employee fontik = new Employee(new Person("Евгений", "Фотник", 28), null, 777);
+		Employee mozaikina = new Employee(new Person("Екатерина", "Мозайкина", 28), null, 666);
+		Employee petrov = new Employee(new Person("Иван", "Петров", 18), null, 555);
+		Employee dolgorukiy = new Employee(new Person("Александр", "Долгорукий", 22), null, 444);
+		Employee vodianov = new Employee(new Person("Дмитрий", "Водянов", 37), null, 333);
+		Employee gubin = new Employee(new Person("Андрей", "Губин", 18), null, 222);
+		Employee zverev = new Employee(new Person("Сергей", "Зверев", 42), null, 100);
+		Employee utkina = new Employee(new Person("Наталья", "Уткина", 18), null, 100);
 
 		Department directorate = new Department("Директорат");
 		directorate.addEmployee(ivanov);
@@ -75,29 +104,9 @@ public class Task3EmployeeHierarchy {
 		return new Company("Фирма", directorate);
 	}
 
-	//Обход по дереву в ширину
-	private static String treeWidth(Company company) {
-		StringBuilder sb = new StringBuilder();
-		List<Department> departments = new ArrayList<>();
-		departments.add(company.getDepartmentSet());
-
-		while (departments.size() != 0) {
-			departments.forEach(department -> department.getEmployeeSet().forEach((Employee employee) -> {
-				sb.append(employee.toString());
-				sb.append("\n");
-			}));
-			departments = moveDeeper(departments);
+	private static void printEmployees(List<Employee> employeeList){
+		for (Employee employee : employeeList) {
+			System.out.println(employee);
 		}
-		return sb.toString();
-	}
-
-	private static List<Department> moveDeeper(List<Department> departments) {
-		List<Department> subDepartments = new ArrayList<>();
-		departments.forEach((dep) -> {
-			if (dep.getSubDepartments() != null) {
-				subDepartments.addAll(dep.getSubDepartments());
-			}
-		});
-		return subDepartments;
 	}
 }

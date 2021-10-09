@@ -1,19 +1,19 @@
 package java2.Task3EmployeeHierarchy;
 
 public class Company {
-	private String name;
-	private Department departmentSet;
+	private final String name;
+	private final Department department;
 
 	public Company(String name, Department departmentSet) {
 		this.name = name;
-		this.departmentSet = departmentSet;
+		this.department = departmentSet;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public Department getDepartmentSet() {
-		return departmentSet;
+	public Department getDepartment() {
+		return department;
 	}
 }
