@@ -2,7 +2,9 @@ package java2.Task3EmployeeHierarchy;
 
 import java2.Task3EmployeeHierarchy.util.Companies;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Task3EmployeeHierarchy {
 
@@ -11,39 +13,43 @@ public class Task3EmployeeHierarchy {
 
 		//TASK3_1
 		System.out.println("Task3_1");
-		Companies.Expression selectAll = ((employee, selectedEmployeeList) -> true);
-
-		printEmployees(Companies.findEmployee(company, selectAll));
+		Companies.Expression<List<Employee>> selectAll = ((employee, selectedEmployeeList) -> selectedEmployeeList.add(employee));
+		printEmployees(Companies.findEmployee(company, new LinkedList<>(), selectAll));
 
 		//TASK3_2
 		System.out.println("Task3_2");
-		Companies.Expression minAge = ((employee, selectedEmployeeList) -> {
+		Companies.Expression<List<Employee>> minAge = ((employee, selectedEmployeeList) -> {
 			if (selectedEmployeeList.isEmpty()) {
-				return true;
+				selectedEmployeeList.add(employee);
 			} else if (employee.getPerson().getAge() < selectedEmployeeList.get(0).getPerson().getAge()) {
 				selectedEmployeeList.clear();
-				return true;
-			} else return employee.getPerson().getAge() == selectedEmployeeList.get(0).getPerson().getAge();
+				selectedEmployeeList.add(employee);
+			} else if (employee.getPerson().getAge() == selectedEmployeeList.get(0).getPerson().getAge()){
+				selectedEmployeeList.add(employee);
+			}
 		});
-
-		printEmployees(Companies.findEmployee(company, minAge));
+		printEmployees(Companies.findEmployee(company,new LinkedList<>(), minAge));
 
 		//TASK3_3
 		System.out.println("Task3_3");
-		Companies.Expression maxAge = ((employee, selectedEmployeeList) -> {
+		Companies.Expression<List<Employee>> maxAge = ((employee, selectedEmployeeList) -> {
 			if (selectedEmployeeList.isEmpty()) {
-				return true;
+				selectedEmployeeList.add(employee);
 			} else if (employee.getPerson().getAge() > selectedEmployeeList.get(0).getPerson().getAge()) {
 				selectedEmployeeList.clear();
-				return true;
-			} else return employee.getPerson().getAge() == selectedEmployeeList.get(0).getPerson().getAge();
+				selectedEmployeeList.add(employee);
+			} else if (employee.getPerson().getAge() == selectedEmployeeList.get(0).getPerson().getAge()){
+				selectedEmployeeList.add(employee);
+			}
 		});
-		printEmployees(Companies.findEmployee(company, maxAge));
+		printEmployees(Companies.findEmployee(company,new LinkedList<>(), maxAge));
 
 		//TASK3_4
 		System.out.println("Task3_4");
 
+		Companies.Expression<AtomicInteger> totalWages = ( (employee, wages) -> wages.addAndGet(employee.getWage()) );
 
+		System.out.println("Total wages = " + Companies.findEmployee(company, new AtomicInteger(), totalWages).get() + " $.");
 	}
 
 	private static Company createCompany() {
@@ -108,5 +114,6 @@ public class Task3EmployeeHierarchy {
 		for (Employee employee : employeeList) {
 			System.out.println(employee);
 		}
+		System.out.println();
 	}
 }

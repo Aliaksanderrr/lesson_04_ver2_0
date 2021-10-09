@@ -1,5 +1,7 @@
 package java2.Task3EmployeeHierarchy;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Employee {
 	private Person person;
 	private Department post;
