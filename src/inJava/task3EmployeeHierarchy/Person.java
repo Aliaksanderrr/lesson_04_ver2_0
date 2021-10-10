@@ -1,4 +1,4 @@
-package java2.Task3EmployeeHierarchy;
+package inJava.task3EmployeeHierarchy;
 
 public class Person {
 	private final String firstName;
@@ -11,20 +11,12 @@ public class Person {
 		this.age = age;
 	}
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
 	public int getAge() {
 		return age;
 	}
 
 	@Override
 	public String toString() {
-		return firstName + " " + lastName + "(" + age + " лет)" ;
+		return firstName + " " + lastName + "(" + age + " лет)";
 	}
 }

@@ -1,6 +1,4 @@
-package java2.Task3EmployeeHierarchy;
-
-import java.util.concurrent.atomic.AtomicInteger;
+package inJava.task3EmployeeHierarchy;
 
 public class Employee {
 	private Person person;
@@ -17,10 +15,6 @@ public class Employee {
 		return person;
 	}
 
-	public Department getPost() {
-		return post;
-	}
-
 	public int getWage() {
 		return wage;
 	}
@@ -31,6 +25,6 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return post.getName() + "(зарплата: " + wage + ") - " + person.toString();
+		return post.getName() + " (зарплата: " + wage + ") - " + person.toString();
 	}
 }

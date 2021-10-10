@@ -1,4 +1,4 @@
-package java2.Task2ListOfWords;
+package inJava.task2ListOfWords;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +37,7 @@ public class Task2ListOfWords {
 		Task2ListOfWords task2_2 = new Task2ListOfWords();
 		StringBuilder sb = new StringBuilder();
 		for (String word : task2_2.wordsList) {
-			sb.append(task2_2.firstUpperCase(word));
+			sb.append(task2_2.firstCharUpperCase(word));
 			sb.append(SEPARATOR);
 		}
 		sb.setLength(sb.length() - SEPARATOR.length());
@@ -76,7 +76,7 @@ public class Task2ListOfWords {
 		System.out.println(Arrays.deepToString(pairArr));
 	}
 
-	private String firstUpperCase(String word) {
+	private String firstCharUpperCase(String word) {
 		return word.substring(0, 1).toUpperCase() + word.substring(1);
 	}
 

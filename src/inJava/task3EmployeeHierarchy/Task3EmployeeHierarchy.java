@@ -1,6 +1,6 @@
-package java2.Task3EmployeeHierarchy;
+package inJava.task3EmployeeHierarchy;
 
-import java2.Task3EmployeeHierarchy.util.Companies;
+import inJava.task3EmployeeHierarchy.util.Companies;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +13,7 @@ public class Task3EmployeeHierarchy {
 
 		//TASK3_1
 		System.out.println("Task3_1");
+		System.out.println(company.getName());
 		Companies.Expression<List<Employee>> selectAll = ((employee, selectedEmployeeList) -> selectedEmployeeList.add(employee));
 		printEmployees(Companies.findEmployee(company, new LinkedList<>(), selectAll));
 
@@ -46,10 +47,10 @@ public class Task3EmployeeHierarchy {
 
 		//TASK3_4
 		System.out.println("Task3_4");
-
+		//тут с AtomicInteger я походу переборщил): ,но Integer unmutable и с ним не работало.
 		Companies.Expression<AtomicInteger> totalWages = ( (employee, wages) -> wages.addAndGet(employee.getWage()) );
 
-		System.out.println("Total wages = " + Companies.findEmployee(company, new AtomicInteger(), totalWages).get() + " $.");
+		System.out.println("Общая зарплата = " + Companies.findEmployee(company, new AtomicInteger(), totalWages).get() + " $.");
 	}
 
 	private static Company createCompany() {

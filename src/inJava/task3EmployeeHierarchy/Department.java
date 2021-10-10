@@ -1,4 +1,4 @@
-package java2.Task3EmployeeHierarchy;
+package inJava.task3EmployeeHierarchy;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -7,11 +7,11 @@ public class Department {
 
 	private final String name;
 	private final Set<Employee> employeeSet = new HashSet<>();
-	private final Set<Department> subDepartments;
+	private final Set<Department> subDepartmentSet;
 
 	public Department(String name, Set<Department> subDepartments) {
 		this.name = name;
-		this.subDepartments = subDepartments;
+		this.subDepartmentSet = subDepartments;
 	}
 
 	public Department(String name) {
@@ -26,12 +26,12 @@ public class Department {
 		return employeeSet;
 	}
 
-	public Set<Department> getSubDepartments() {
-		return subDepartments;
+	public Set<Department> getSubDepartmentSet() {
+		return subDepartmentSet;
 	}
 
 	public void addSubDepartment(Department department) {
-		subDepartments.add(department);
+		subDepartmentSet.add(department);
 	}
 
 	public void addEmployee(Employee employee) {

@@ -1,4 +1,4 @@
-package java2.Task3EmployeeHierarchy;
+package inJava.task3EmployeeHierarchy;
 
 public class Company {
 	private final String name;

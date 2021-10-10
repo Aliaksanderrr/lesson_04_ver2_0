@@ -1,4 +1,4 @@
-package java2.Task2ListOfWords;
+package inJava.task2ListOfWords;
 
 import java.util.Objects;
 

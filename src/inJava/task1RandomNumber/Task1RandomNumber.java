@@ -1,4 +1,4 @@
-package java2.Task1RandomNumber;
+package inJava.task1RandomNumber;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -11,14 +11,14 @@ public class Task1RandomNumber {
 	public static void main(String[] args) {
 
 		//TASK1_1
-		System.out.print("\nTASK1_1\n");
+		System.out.println("\nTASK1_1");
 		Task1RandomNumber task1_1 = new Task1RandomNumber();
 		int randomNum = task1_1.getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
 		int biggestDigit = task1_1.getBiggestDigit(randomNum);
 		System.out.printf("Into random number \"%d\" maximum digit is \"%d\".\n", randomNum, biggestDigit);
 
 		//TASK1_2
-		System.out.print("\nTASK1_2\n");
+		System.out.println("\nTASK1_2");
 		Task1RandomNumber task1_2 = new Task1RandomNumber();
 		int[] numList = new int[3];
 		int sumFirstDigit = 0;
@@ -30,7 +30,7 @@ public class Task1RandomNumber {
 		System.out.printf("The sum of its first digits are %d\n", sumFirstDigit);
 
 		//TASK1_3
-		System.out.print("\nTASK1_3\n");
+		System.out.println("\nTASK1_3");
 		Task1RandomNumber task1_3 = new Task1RandomNumber();
 		randomNum = task1_3.getRandomNumber(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER);
 		int sumOfDigits = getDigitsSum(randomNum);
